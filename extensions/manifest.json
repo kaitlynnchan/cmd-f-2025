@@ -1,0 +1,12 @@
+{
+    "name": "EcoGPT",
+    "description": "Simple extension to reduce AI footprint",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "author": "Aniyah Bohnen",  
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "images/icon.png", 
+      "default_title": "EcoGPT"
+    }
+  }
