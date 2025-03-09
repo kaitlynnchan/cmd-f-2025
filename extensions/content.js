@@ -138,7 +138,7 @@ function openModal(queryType, url) {
     if (queryType == "COMPLEX") {
       module.style.top = '-150px';
       module.innerHTML = `
-        <h3>EcoAI Assistant here!</h3>
+        <h3>EcoGPT Assistant here!</h3>
         <p style="padding: 10px 0;">I have analyzed your prompt and found that using generative is fine!</p>
       `;
     } else {
@@ -160,7 +160,7 @@ function openModal(queryType, url) {
     if (queryType == "COMPLEX") {
         existingModule.style.top = '-150px';
         existingModule.innerHTML = `
-            <h3>EcoAI Assistant here!</h3>
+            <h3>EcoGPT Assistant here!</h3>
             <p style="padding: 10px 0;">I have analyzed your prompt and found that using generative is fine!</p>
         `;
     } else {
