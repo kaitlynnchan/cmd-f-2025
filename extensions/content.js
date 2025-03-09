@@ -25,6 +25,17 @@ const intervalId = setInterval(() => {
 
         // Set up event listener to detect typing
         textbox.addEventListener('input', () => {
+            const button = document.body.querySelector('button[aria-label="Send prompt"]');
+            if (button) {
+                // console.log('Button with aria-label "Send prompt" found:', button);
+                button.addEventListener('click', function() {
+                    console.log('Mouse left the "Send prompt" button!');
+                    incrementCounter();
+                });
+            } else {
+                // console.log('No button with aria-label "Send prompt" found');
+            }
+
             clearTimeout(typingTimeout); // Clear any previous timeout
             typingTimeout = setTimeout(() => {
                 console.log('User has stopped typing.');
@@ -37,7 +48,6 @@ const intervalId = setInterval(() => {
 
                     // Send user text to the API or trigger your logic here
                     sendUserTextToApi(userText);
-
                 } else {
                     // If no <p> tag is found, log the content of the textbox itself (or handle it as needed)
                     const userTextFallback = textbox.value; // If it's an input field
@@ -161,7 +171,15 @@ function openModal(queryType, url) {
         `;
     }
     existingModule.style.display = 'block';
-}
+  }
 }
 
-  
+function incrementCounter() {
+  chrome.storage.sync.get(['counter'], function(result) {
+      let counter = result.counter || 0;
+      counter += 1;
+      chrome.storage.sync.set({ counter: counter }, function() {
+          console.log('Counter incremented to:', counter);
+      });
+  });
+}
