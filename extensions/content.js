@@ -38,7 +38,6 @@ const intervalId = setInterval(() => {
                     // Send user text to the API or trigger your logic here
                     sendUserTextToApi(userText);
 
-
                 } else {
                     // If no <p> tag is found, log the content of the textbox itself (or handle it as needed)
                     const userTextFallback = textbox.value; // If it's an input field
@@ -89,6 +88,8 @@ async function sendUserTextToApi(userText) {
             console.error('GraphQL Error:', data.errors);
         } else {
             console.log('GraphQL Response:', data);
+            
+            openModal(data.data.analyze.queryType, data.data.analyze.url);
         }
     } catch (error) {
         console.error('Error sending user text to API:', error);
@@ -101,41 +102,66 @@ async function sendUserTextToApi(userText) {
 //     console.log('Mouse left the "Send prompt" button!');
 // });
 
+function openModal(queryType, url) {
+  const textbox = document.querySelector('#prompt-textarea');
 
-// Check if the module already exists
-if (!document.getElementById('my-injected-module')) {
+  // Check if the module already exists
+  if (!document.getElementById('my-injected-module')) {
+
     // Create the module (e.g., a sidebar or widget)
     const module = document.createElement('div');
     module.id = 'my-injected-module';
-    module.style.position = 'fixed';
-    module.style.bottom = '300px';
-    module.style.right = '50px';
-    module.style.width = '250px';
-    module.style.height = '200px';
-    module.style.backgroundColor = 'rgba(91, 238, 100, 0.8)';
-    module.style.color = 'white';
+    module.style.position = 'absolute';
+    module.style.width = '350px';
+    module.style.height = 'auto';
+    module.style.color = '#28430A';
     module.style.padding = '20px';
-    module.style.borderRadius = '8px';
+    module.style.borderRadius = '30px';
     module.style.zIndex = '10000';
     module.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.5)';
-    module.innerHTML = `
-      <h3>ERR 400</h3>
-      <p>Hmm... This appears to be a simple prompt.</p>
-      <p>Try reducing your carbon footprint below plsss <3 !!</p>
-      <button id="GoogleSearch">Google Search</button>
-      <div id="moduleContent" style="display:none; margin-top: 10px;">
-        <p>Redirect to google.</p> 
-      </div>
-    `;
+    module.style.top = '-300px';
+    module.style.right = '0px';
+    module.style.border = '5px solid transparent';
+    module.style.background = 'linear-gradient(#E5FFE7, white) padding-box, linear-gradient(to right, #A7D930, #7B4425) border-box';
+    module.style.display = 'block';
+
+    if (queryType == "COMPLEX") {
+      module.style.top = '-150px';
+      module.innerHTML = `
+        <h3>EcoAI Assistant here!</h3>
+        <p style="padding: 10px 0;">I have analyzed your prompt and found that using generative is fine!</p>
+      `;
+    } else {
+      module.innerHTML = `
+        <h3>EcoAI Assistant here!</h3>
+        <p style="padding: 10px 0;">I have analyzed your prompt and found that is more efficient to use a google search than using a generative AI request</p>
+        <p style="padding: 10px 0;">Try reducing your carbon footprint by using the following resources instead:</p>
+        <a class="GoogleSearch" href="${url}"' target="_new" rel="noopener" style="color: #0022FF;">${url}</a>
+      `;
+    }
     
     // Append the module to the page body
-    document.body.appendChild(module);
-  
-    // Add event listener for toggling content visibility
-    const toggleButton = document.getElementById('toggleContent');
-    const moduleContent = document.getElementById('moduleContent');
-    toggleButton.addEventListener('click', () => {
-      moduleContent.style.display = (moduleContent.style.display === 'none') ? 'block' : 'none';
-    });
-  }
+    textbox.parentNode.appendChild(module);
+
+  } else {
+    // If the module already exists, update its content and show it
+    const existingModule = document.getElementById('my-injected-module');
+    if (queryType == "COMPLEX") {
+        existingModule.style.top = '-150px';
+        existingModule.innerHTML = `
+            <h3>EcoAI Assistant here!</h3>
+            <p style="padding: 10px 0;">I have analyzed your prompt and found that using generative is fine!</p>
+        `;
+    } else {
+        existingModule.innerHTML = `
+            <h3>EcoAI Assistant here!</h3>
+            <p style="padding: 10px 0;">I have analyzed your prompt and found that it is more efficient to use a google search than using a generative AI request</p>
+            <p style="padding: 10px 0;">Try reducing your carbon footprint by using the following resources instead:</p>
+            <a class="GoogleSearch" href="${url}" target="_new" rel="noopener" style="color: #0022FF;">${url}</a>
+        `;
+    }
+    existingModule.style.display = 'block';
+}
+}
+
   
