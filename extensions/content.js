@@ -164,6 +164,7 @@ function openModal(queryType, url) {
             <p style="padding: 10px 0;">I have analyzed your prompt and found that using generative is fine!</p>
         `;
     } else {
+        existingModule.style.top = '-300px';
         existingModule.innerHTML = `
           <h3>EcoGPT Assistant here!</h3>
           <em>Think before you prompt...</em>
