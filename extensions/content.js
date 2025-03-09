@@ -143,7 +143,7 @@ function openModal(queryType, url) {
       `;
     } else {
       module.innerHTML = `
-        <h3>EcoAI Assistant here!</h3>
+        <h3>EcoGPT Assistant here!</h3>
         <em>Think before you prompt...</em>
         <p style="padding: 10px 0;">I have analyzed your prompt and found that is more efficient to use a google search than using a generative AI request</p>
         <p style="padding: 10px 0;">Try reducing your carbon footprint by performing a search on Google instead:</p>
