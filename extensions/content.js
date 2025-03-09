@@ -13,13 +13,6 @@ if (button) {
     console.log('No button with aria-label "Send prompt" found');
 }
 
-button.addEventListener('mouseover', function() {
-    // Action to perform when the button is hovered over
-    console.log("Button is being hovered over!");
-
-  });
-
-
 
 // content.js
 
@@ -33,18 +26,18 @@ if (!document.getElementById('my-injected-module')) {
     module.style.right = '20px';
     module.style.width = '250px';
     module.style.height = '150px';
-    module.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    module.style.backgroundColor = 'rgba(91, 238, 100, 0.8)';
     module.style.color = 'white';
     module.style.padding = '20px';
     module.style.borderRadius = '8px';
     module.style.zIndex = '10000';
     module.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.5)';
     module.innerHTML = `
-      <h3>Injected Module</h3>
-      <p>This module was injected into the page.</p>
-      <button id="toggleContent">Toggle Content</button>
+      <h3>ERR 400</h3>
+      <p>Hmm... This appears to be a simple prompt.</p>
+      <button id="GoogleSearch">Toggle Content</button>
       <div id="moduleContent" style="display:none; margin-top: 10px;">
-        <p>Here is more content.</p>
+        <p>Redirect to google.</p> 
       </div>
     `;
     
