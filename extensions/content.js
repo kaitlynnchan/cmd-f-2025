@@ -138,11 +138,13 @@ function openModal(queryType, url) {
     if (queryType == "COMPLEX") {
       module.style.top = '-150px';
       module.innerHTML = `
+        <button id="mod-close-button" style="position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 20px; cursor: pointer;">&times;</button>
         <h3>EcoAI Assistant here!</h3>
         <p style="padding: 10px 0;">I have analyzed your prompt and found that using generative is fine!</p>
       `;
     } else {
       module.innerHTML = `
+        <button id="mod-close-button" style="position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 20px; cursor: pointer;">&times;</button>
         <h3>EcoAI Assistant here!</h3>
         <em>Think before you prompt...</em>
         <p style="padding: 10px 0;">I have analyzed your prompt and found that is more efficient to use a google search than using a generative AI request</p>
@@ -154,6 +156,10 @@ function openModal(queryType, url) {
     // Append the module to the page body
     textbox.parentNode.appendChild(module);
 
+    const closeButton = document.getElementById('mod-close-button');
+    closeButton.addEventListener('click', function () {
+        module.style.display = 'none';
+    });
   } else {
     // If the module already exists, update its content and show it
     const existingModule = document.getElementById('my-injected-module');
@@ -164,6 +170,7 @@ function openModal(queryType, url) {
             <p style="padding: 10px 0;">I have analyzed your prompt and found that using generative is fine!</p>
         `;
     } else {
+        existingModule.style.top = '-300px';
         existingModule.innerHTML = `
             <h3>EcoAI Assistant here!</h3>
             <p style="padding: 10px 0;">I have analyzed your prompt and found that it is more efficient to use a google search than using a generative AI request</p>
@@ -172,6 +179,11 @@ function openModal(queryType, url) {
         `;
     }
     existingModule.style.display = 'block';
+
+    // const closeButton = document.getElementById('close-button');
+    // closeButton.addEventListener('click', function () {
+    //     module.style.display = 'none';
+    // });
   }
 }
 
