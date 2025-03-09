@@ -22,10 +22,10 @@ if (!document.getElementById('my-injected-module')) {
     const module = document.createElement('div');
     module.id = 'my-injected-module';
     module.style.position = 'fixed';
-    module.style.bottom = '20px';
-    module.style.right = '20px';
+    module.style.bottom = '300px';
+    module.style.right = '50px';
     module.style.width = '250px';
-    module.style.height = '150px';
+    module.style.height = '200px';
     module.style.backgroundColor = 'rgba(91, 238, 100, 0.8)';
     module.style.color = 'white';
     module.style.padding = '20px';
@@ -35,7 +35,8 @@ if (!document.getElementById('my-injected-module')) {
     module.innerHTML = `
       <h3>ERR 400</h3>
       <p>Hmm... This appears to be a simple prompt.</p>
-      <button id="GoogleSearch">Toggle Content</button>
+      <p>Try reducing your carbon footprint below plsss <3 !!</p>
+      <button id="GoogleSearch">Google Search</button>
       <div id="moduleContent" style="display:none; margin-top: 10px;">
         <p>Redirect to google.</p> 
       </div>

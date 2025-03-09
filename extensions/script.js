@@ -6,4 +6,5 @@ document.addEventListener('DOMContentLoaded', function () {
     // Dynamically update the popup message
     popupMessage.textContent = "Thanks for using EcoGPT! We're reducing your footprint on ChatGPT.";
   });
+
   
