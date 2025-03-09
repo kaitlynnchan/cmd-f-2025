@@ -1,5 +1,8 @@
 # cmd-f-2025
 
+run
+`flask --app .\api\__init__.py run`
+
 ## docker
 
 build
