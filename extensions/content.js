@@ -165,10 +165,11 @@ function openModal(queryType, url) {
         `;
     } else {
         existingModule.innerHTML = `
-            <h3>EcoAI Assistant here!</h3>
-            <p style="padding: 10px 0;">I have analyzed your prompt and found that it is more efficient to use a google search than using a generative AI request</p>
-            <p style="padding: 10px 0;">Try reducing your carbon footprint by using the following resources instead:</p>
-            <a class="GoogleSearch" href="${url}" target="_new" rel="noopener" style="color: #0022FF;">${url}</a>
+          <h3>EcoGPT Assistant here!</h3>
+          <em>Think before you prompt...</em>
+          <p style="padding: 10px 0;">I have analyzed your prompt and found that is more efficient to use a google search than using a generative AI request</p>
+          <p style="padding: 10px 0;">Try reducing your carbon footprint by performing a search on Google instead:</p>
+          <a class="GoogleSearch" href="${url}"' target="_new" rel="noopener" style="color: #0022FF;">Google Search</a>
         `;
     }
     existingModule.style.display = 'block';
