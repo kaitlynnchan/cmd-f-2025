@@ -25,6 +25,10 @@ Flask: A minimalistic Python web framework that powers the backend API and handl
 
 Google Chrome: The Chrome extension is the primary interface, delivering an intuitive experience for users.
 
+## Loading the extension
+
+In Chrome Extension developer mode, add the `extensions` folder as unpacked.
+
 ## docker
 
 build
