@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extension Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 200px;
+      padding: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h4>Inject Module</h4>
+  <button id="injectButton">Inject Module</button>
+
+  <script>
+    document.getElementById('injectButton').addEventListener('click', () => {
+      // Send a message to content.js to inject the module
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          func: injectModule
+        });
+      });
+    });
+
+    // Function to be executed on the page
+    function injectModule() {
+      if (!document.getElementById('my-injected-module')) {
+        const module = document.createElement('div');
+        module.id = 'my-injected-module';
+        module.style.position = 'fixed';
+        module.style.bottom = '20px';
+        module.style.right = '20px';
+        module.style.width = '250px';
+        module.style.height = '150px';
+        module.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        module.style.color = 'white';
+        module.style.padding = '20px';
+        module.style.borderRadius = '8px';
+        module.style.zIndex = '10000';
+        module.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.5)';
+        module.innerHTML = `
+          <h3>Injected Module</h3>
+          <p>This module was injected into the page.</p>
+          <button id="toggleContent">Toggle Content</button>
+          <div id="moduleContent" style="display:none; margin-top: 10px;">
+            <p>Here is more content.</p>
+          </div>
+        `;
+        document.body.appendChild(module);
+
+        const toggleButton = document.getElementById('toggleContent');
+        const moduleContent = document.getElementById('moduleContent');
+        toggleButton.addEventListener('click', () => {
+          moduleContent.style.display = (moduleContent.style.display === 'none') ? 'block' : 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>
