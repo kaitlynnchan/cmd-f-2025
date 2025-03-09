@@ -11,9 +11,10 @@ class Query(graphene.ObjectType):
     analyze = graphene.Field(AnalyzeResult, prompt=graphene.String(required=True))
 
     def resolve_analyze(self, info, prompt):
-        result_json = analyze_prompt_complexity(prompt)
-        result_json = result_json.replace('\n', '').replace('json','').replace('```', '')
-        result = json.loads(result_json)
+        result = analyze_prompt_complexity(prompt)
+        print(result)
+        # result_json = result_json.replace('\n', '').replace('json','').replace('```', '')
+        # result = json.loads(result_json)
         if 'classification' not in result:
             return AnalyzeResult(success=False)
 
